@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hypixel Forge Flipper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔥 Hypixel Forge Flipper</h1>
+            <p class="subtitle">Trova i migliori flip della Forge in tempo reale</p>
+        </header>
+
+        <section class="controls">
+            <div class="control-group">
+                <label for="capital">Capitale (coins):</label>
+                <input type="number" id="capital" placeholder="Es. 10000000" min="0">
+            </div>
+
+            <div class="control-group">
+                <label for="forgeSlots">Forge slots disponibili:</label>
+                <input type="number" id="forgeSlots" placeholder="1-8" min="1" max="8" value="1">
+            </div>
+
+            <div class="control-group">
+                <label for="strategy">Strategia:</label>
+                <select id="strategy">
+                    <option value="instant">Instant Buy + Instant Sell (veloce)</option>
+                    <option value="optimal">Optimal (buy instant, sell AH)</option>
+                    <option value="maxProfit">Max Profit (buy AH, sell AH)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="minProfitHour">Min profit/ora:</label>
+                <input type="number" id="minProfitHour" placeholder="Es. 100000" min="0" value="0">
+            </div>
+
+            <button id="refreshBtn" class="btn-primary">🔄 Aggiorna Dati</button>
+        </section>
+
+        <section class="stats">
+            <div class="stat-card">
+                <h3>💰 Miglior Profitto/Ora</h3>
+                <p id="bestProfitHour" class="stat-value">-</p>
+            </div>
+            <div class="stat-card">
+                <h3>⏱️ Miglior Profitto/Forge</h3>
+                <p id="bestProfitForge" class="stat-value">-</p>
+            </div>
+            <div class="stat-card">
+                <h3>📦 Flip Disponibili</h3>
+                <p id="totalFlips" class="stat-value">-</p>
+            </div>
+            <div class="stat-card">
+                <h3>🕐 Ultimo Aggiornamento</h3>
+                <p id="lastUpdate" class="stat-value">-</p>
+            </div>
+        </section>
+
+        <section class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Caricamento dati dal Bazaar...</p>
+        </section>
+
+        <section class="error" id="error" style="display: none;">
+            <p>⚠️ Errore nel caricamento dei dati. Riprova più tardi.</p>
+        </section>
+
+        <section class="results" id="results" style="display: none;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Tempo</th>
+                        <th>Costo</th>
+                        <th>Vendita</th>
+                        <th>Profitto</th>
+                        <th>Profitto/Ora</th>
+                        <th>Max Flip</th>
+                    </tr>
+                </thead>
+                <tbody id="flipsTableBody">
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
